@@ -25,7 +25,7 @@ endfun
 let g:vim_addon_manager.scms.git.clone=['MyGitCheckout']
 
 call SetupVAM()
-VAMActivate The_NERD_tree jellybeans vim-addon-commenting github:geekjuice/vim-spec vim-autoformat github:sickill/vim-monokai tlib vim-snippets snipmate matchit.zip github:airblade/vim-gitgutter Tagbar powerline fugitive github:editorconfig/editorconfig-vim github:tpope/vim-cucumber github:digitaltoad/vim-jade github:kristijanhusak/vim-multiple-cursors github:nsf/gocode github:fatih/vim-go github:vim-jp/vim-go-extra github:rjohnsondev/vim-compiler-go github:ervandew/supertab
+VAMActivate The_NERD_tree jellybeans vim-addon-commenting github:geekjuice/vim-spec vim-autoformat github:sickill/vim-monokai tlib vim-snippets snipmate matchit.zip github:airblade/vim-gitgutter Tagbar powerline fugitive github:editorconfig/editorconfig-vim github:tpope/vim-cucumber github:digitaltoad/vim-jade github:kristijanhusak/vim-multiple-cursors vim-go github:rjohnsondev/vim-compiler-go
 
 
 colorscheme jellybeans
@@ -64,13 +64,6 @@ noremap <F7> :Autoformat<CR><CR>
 nmap <silent> <C-D> :NERDTreeToggle<CR>
 nmap <silent> <C-E> :TagbarToggle<CR>
 let g:NERDTreeDirArrows=0
-
-
-"Super tab settings - uncomment the next 4 lines
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
-let g:SuperTabClosePreviewOnPopupClose = 1
 
 "map <Leader>t :call RunCurrentSpecFile()<CR>
 "map <Leader>s :call RunNearestSpec()<CR>

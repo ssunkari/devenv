@@ -45,6 +45,22 @@ case $(id -u) in
 			curl -sSL https://get.docker.com/ | sudo sh
 		fi
 
+		if ! hash go 2>/dev/null; then
+			echo "Installing golang"
+			VERSION="1.4"
+			OS="linux"
+			ARCH="amd64"
+
+			FILE="go$VERSION.$OS-$ARCH.tar.gz"
+
+			if [ ! -e $FILE ]
+			then
+				wget "https://storage.googleapis.com/golang/$FILE"
+			fi
+
+			sudo tar -C /usr/local -xzf "$FILE"
+		fi
+
 		if ! hash fig 2>/dev/null; then
 			echo "Installing fig"
 			sudo pip install -U fig

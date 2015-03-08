@@ -118,4 +118,8 @@ export NVM_DIR="/home/vagrant/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 source ~/.nvm/nvm.sh
 nvm use 0.10
-PATH=$PATH:${GOPATH//://bin:}/bin
+mkdir -p $HOME/go
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:${GOPATH//://bin:}/bin
