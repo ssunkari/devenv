@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.ssh.forward_agent = true
 
 	config.vm.provider :virtualbox do |vb|
-		vb.name = "jamlen-devenv"
+		vb.name = "devenv"
 		vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 		vb.customize ["modifyvm", :id, "--memory", "4096"]
 	end
