@@ -1,3 +1,5 @@
+/home/.ssh/
+.DS_Store
 .vagrant/
 *.json
 *.box
