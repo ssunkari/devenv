@@ -45,6 +45,12 @@ case $(id -u) in
 			git config --global user.email "$git_email"
 		fi
 
+		if ! hash pip 2>/dev/null; then
+			echo "Installing pip"
+			wget https://bootstrap.pypa.io/get-pip.py
+			sudo python get-pip.py
+		fi
+
 		if ! hash docker 2>/dev/null; then
 			echo "Installing docker"
 			curl -sSL https://get.docker.com/ | sudo sh
@@ -64,12 +70,17 @@ case $(id -u) in
 			fi
 
 			sudo tar -C /usr/local -xzf "$FILE"
+			echo 'export PATH=$PATH:/usr/local/go/bin' >> $HOME/.profile
+			echo 'mkdir -p $HOME/go' >> $HOME/.profile
+			echo 'export GOROOT=/usr/local/go' >> $HOME/.profile
+			echo 'export PATH=$PATH:$GOROOT/bin' >> $HOME/.profile
+			echo 'export GOPATH=$HOME/go' >> $HOME/.profile
+			echo 'export PATH=$PATH:${GOPATH//://bin:}/bin' >> $HOME/.profile
 		fi
 
-		if ! hash fig 2>/dev/null; then
-			echo "Installing fig"
-			sudo pip install -U fig
-			#sudo curl -L https://github.com/docker/fig/releases/download/1.0.0/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; sudo chmod +x /usr/local/bin/fig
+		if ! hash dockercompose 2>/dev/null; then
+			echo "Installing docker-compose"
+			sudo pip install -U docker-compose
 		fi
 
 		if ! grep -qe "^export TERM='xterm-256color'$"~/.bashrc; then
