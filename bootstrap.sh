@@ -44,6 +44,13 @@ case $(id -u) in
 			git config --global user.name "$git_name"
 			git config --global user.email "$git_email"
 		fi
+		
+		if ! hash "git flow" 2>/dev/null; then
+			echo "git flow"
+			git clone --recursive git://github.com/nvie/gitflow.git
+			(cd gitflow && sudo make prefix=/opt/local install)
+			sudo ln -s /opt/local/bin/git-flow /usr/bin/git-flow
+		fi
 
 		if ! hash pip 2>/dev/null; then
 			echo "Installing pip"
