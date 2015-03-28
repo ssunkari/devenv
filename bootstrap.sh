@@ -49,7 +49,7 @@ case $(id -u) in
 			echo "git flow"
 			git clone --recursive git://github.com/nvie/gitflow.git
 			(cd gitflow && sudo make prefix=/opt/local install)
-			sudo ln -s /opt/local/bin/git-flow /usr/bin/git-flow
+			echo 'export PATH=$PATH:/opt/local/bin' >> $HOME/.profile
 		fi
 
 		if ! hash pip 2>/dev/null; then
