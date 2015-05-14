@@ -35,7 +35,7 @@ end
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.hostname    = "devenv"
 	config.vm.box         = "chef/ubuntu-14.04"
-	config.vm.network       "private_network", ip: "192.168.56.2"
+	config.vm.network       "private_network", ip: "192.168.50.2"
 	if setup.has_key? 'syncedFolders'
 		setup["syncedFolders"].each do |sync|
 			config.vm.synced_folder sync["source"], sync["dest"]
@@ -69,7 +69,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.provision :file, source: "./home/.gitconfig", destination: "~/.gitconfig"
 
 	config.vm.provision :ventriloquist do |env|
-		env.packages << %w( tmux build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext libz-dev checkinstall exuberant-ctags curl vim-nox cmake dstat gnuplot gdb unzip autoconf automake libtool )
+		env.packages << %w( tmux build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext libz-dev checkinstall exuberant-ctags curl vim-nox cmake dstat gnuplot gdb unzip autoconf automake libtool htop )
 	end
 
 	args = bootstrap_args setup
