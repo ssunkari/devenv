@@ -1,11 +1,5 @@
 {
-  "syncedFolders": [{
-    "source": "../dev",
-    "dest": "/usr/src/dev"
-  }, {
-    "source": "../dev/test-project",
-    "dest": "/usr/src/test"
-  }],
+  "syncedFolders": [],
   "git": {
     "version": "2.1.2",
     "user": {
@@ -14,14 +8,10 @@
     }
   },
   "proxy": {
-    "useSystemProxy": true
+    "useSystemProxy": false
   },
   "npm": {
-    "useSystemProxy": true,
-    "registry": "http://mynpmregistry.org/"
+    "useSystemProxy": false
   },
-  "hosts": [{
-    "ip": "192.168.1.25",
-    "names": ["somednsname.local", "somednsname"]
-  }]
+  "hosts": []
 }
