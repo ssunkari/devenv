@@ -33,7 +33,7 @@ def bootstrap_args (setup)
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-	config.vm.hostname    = "devenv"
+	config.vm.hostname    = "dev-env"
 	config.vm.box         = "chef/ubuntu-14.04"
 	config.vm.network       "private_network", ip: "192.168.50.2"
 	if setup.has_key? 'syncedFolders'
@@ -47,6 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		vb.name = "devenv"
 		vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
 		vb.customize ["modifyvm", :id, "--memory", "4096"]
+		vb.customize ["modifyvm", :id, "--cpus", "1"]
 	end
 
 	if Vagrant.has_plugin?("vagrant-hosts") and setup.has_key? "hosts"
@@ -69,7 +70,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.provision :file, source: "./home/.gitconfig", destination: "~/.gitconfig"
 
 	config.vm.provision :ventriloquist do |env|
-		env.packages << %w( tmux build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext libz-dev checkinstall exuberant-ctags curl vim-nox cmake dstat gnuplot gdb unzip autoconf automake libtool htop )
+		env.packages << %w( tmux build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext libz-dev checkinstall exuberant-ctags curl vim-nox cmake dstat gnuplot gdb unzip autoconf automake libtool htop)
 	end
 
 	args = bootstrap_args setup

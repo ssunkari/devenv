@@ -63,6 +63,11 @@ case $(id -u) in
 			curl -sSL https://get.docker.com/ | sudo sh
 		fi
 
+		if ! hash seige 2>/dev/null; then
+			echo "Installing seige"
+			sudo apt-get install siege
+		fi
+
 		if ! hash go 2>/dev/null; then
 			echo "Installing golang"
 			VERSION="1.4"
@@ -87,7 +92,12 @@ case $(id -u) in
 
 		if ! hash dockercompose 2>/dev/null; then
 			echo "Installing docker-compose"
-			sudo pip install -U docker-compose
+			sudo pip install --upgrade docker-compose
+		fi
+
+		if ! hash awscli 2>/dev/null; then
+			echo "Installing aws-cli"
+			sudo pip install awscli --ignore-installed six
 		fi
 
 		if ! grep -qe "^export TERM='xterm-256color'$"~/.bashrc; then
