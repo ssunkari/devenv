@@ -57,7 +57,15 @@ hosts                | no       | An array of `{ip, names}` where `names` is an 
         "names": ["somednsname.local", "somednsname"]
     }]
 }
-```
+`
+Running Kafka Within the Box
+Once the instance is running you can ssh to the box: vagrant ssh
+Then, inside the box, create folder kafka and paste there attached docker-compose.yml
+Run sudo -i
+curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+Go to the folder where you saved docker-compose.yml and run following command: docker-compose up -d
+This should run kafka instances, you can see the list of running instances with following command: docker-compose ps``
 
 ## TODOs
 
