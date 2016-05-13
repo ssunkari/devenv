@@ -100,6 +100,11 @@ case $(id -u) in
 			sudo pip install awscli --ignore-installed six
 		fi
 
+		if ! hash awsebcli 2>/dev/null; then
+			echo "Installing awsebcli"
+			sudo pip install --upgrade awsebcli
+		fi
+
 		if ! grep -qe "^export TERM='xterm-256color'$"~/.bashrc; then
 			echo "export TERM='xterm-256color'" >> ~/.bashrc
 		fi
