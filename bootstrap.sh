@@ -5,6 +5,8 @@
 #       relying on arg being passed to the script
 #
 
+
+
 if [ $# -lt 1 ] ; then
 	echo "You must specify at least 1 argument."
 	exit 1
@@ -15,6 +17,7 @@ case $(id -u) in
 		sudo -u vagrant -i $0 "$@" # script calling itself as the vagrant user
 		;;
 	*) 
+		
 		while getopts ":v:n:e:r:p:" opt; do
 			case $opt in
 				v) git_version="$OPTARG"
