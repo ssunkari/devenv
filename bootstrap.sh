@@ -36,7 +36,7 @@ case $(id -u) in
 		done
 		if [ ! -z "$git_version" ]; then
 			if ! git --version | grep -q $git_version; then
-				echo "Installing git v$git_version"
+				echo "Installing git $git_version"
 				(cd /tmp; wget –quiet https://www.kernel.org/pub/software/scm/git/git-$git_version.tar.gz; tar -zxf git-$git_version.tar.gz; cd git-$git_version; make prefix=/usr/local all; sudo make prefix=/usr/local install;)
 			fi
 		fi
@@ -97,6 +97,16 @@ case $(id -u) in
 			echo "Installing docker-compose"
 			sudo pip install --upgrade docker-compose
 		fi
+
+		#Run Kafka Scripts		
+		if $kafka_useKafkaRest then
+		 	echo "Running kafka Rest stack"
+		 	cd /usr/src/dev/docker/kafka
+		 	sudo docker-compose up -d
+		 	echo "Finished installing kafka Rest stack"
+		 	sudo docker ps
+		fi
+
 
 		if ! hash awscli 2>/dev/null; then
 			echo "Installing aws-cli"

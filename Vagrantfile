@@ -6,6 +6,7 @@ require 'json'
 VAGRANTFILE_API_VERSION = "2"
 config_file = ENV["config"] || './config.json'
 
+
 if not File.exists? config_file
 	abort "ERROR: Missing configuration file: #{config_file}"
 end
@@ -41,6 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 			config.vm.synced_folder sync["source"], sync["dest"]
 		end
 	end
+
 	config.ssh.forward_agent = true
 
 	config.vm.provider :virtualbox do |vb|
