@@ -71,6 +71,11 @@ case $(id -u) in
 			sudo apt-get install siege
 		fi
 
+		if ! hash ansible 2>/dev/null; then
+			echo "Installing ansible"
+			sudo apt-get install ansible
+		fi
+
 		if ! hash go 2>/dev/null; then
 			echo "Installing golang"
 			VERSION="1.4"
@@ -95,16 +100,21 @@ case $(id -u) in
 
 		if ! hash dockercompose 2>/dev/null; then
 			echo "Installing docker-compose"
-			sudo pip install --upgrade docker-compose
+			sudo pip install docker-compose --upgrade
 		fi
 
 		#Run Kafka Scripts		
-		if $kafka_useKafkaRest then
+		# if $kafka_useKafkaRest then
 		 	echo "Running kafka Rest stack"
 		 	cd /usr/src/dev/docker/kafka
 		 	sudo docker-compose up -d
 		 	echo "Finished installing kafka Rest stack"
 		 	sudo docker ps
+		# fi
+
+		if ! hash ansiable 2>/dev/null; then
+			echo "Installing aws-cli"
+			sudo pip install awscli --ignore-installed six
 		fi
 
 
@@ -124,14 +134,14 @@ case $(id -u) in
 
 		if ! hash nvm 2>/dev/null; then
 			echo "Installing nvm"
-			curl --silent https://raw.githubusercontent.com/creationix/nvm/v0.17.2/install.sh | bash 2>/dev/null
+			curl --silent https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash 2>/dev/null
 			source ~/.nvm/nvm.sh
 			if ! grep -qe "^source ~/.nvm/nvm.sh$" ~/.bashrc; then
 				echo "source ~/.nvm/nvm.sh" >> ~/.bashrc
-				echo "nvm use 0.10" >> ~/.bashrc
+				echo "nvm use 4.4.6" >> ~/.bashrc
 			fi
-			nvm install 0.10 2>/dev/null
-			nvm use 0.10
+			nvm install 4.4.6 2>/dev/null
+			nvm use 4.4.6
 		fi
 
 		if ! hash nodemon 2>/dev/null; then

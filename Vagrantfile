@@ -35,7 +35,7 @@ end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.hostname    = "dev-env"
-	config.vm.box         = "chef/ubuntu-14.04"
+	config.vm.box         = "bento/ubuntu-14.04"
 	config.vm.network       "private_network", ip: "192.168.50.2"
 	if setup.has_key? 'syncedFolders'
 		setup["syncedFolders"].each do |sync|
