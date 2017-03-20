@@ -72,5 +72,5 @@ This should run kafka instances, you can see the list of running instances with 
 - [x] Configure using a json file
 - [x] Add SyncedFolders to config
 - [x] Add Host entries to config
-- [ ] Test different configurations
+- [ ] Test different configurations 
 
